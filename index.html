@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steve Boyer — Principal Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080c0e;
+      --bg-card: #0e1416;
+      --bg-line: rgba(255,255,255,0.06);
+      --fg: #e8edf0;
+      --fg-muted: #7a8d96;
+      --accent: #00c4cc;
+      --accent-dim: rgba(0, 196, 204, 0.10);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 3rem;
+      background: rgba(8,12,14,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--bg-line);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--fg);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fg-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-cta a {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      padding: 0.55rem 1.3rem;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta a:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── LAYOUT ── */
+    section { padding: 7rem 3rem; max-width: 1100px; margin: 0 auto; }
+    .divider { border: none; border-top: 1px solid var(--bg-line); margin: 0; }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 40px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 6rem;
+      padding-top: 8rem;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.8rem, 9vw, 8rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+    }
+    .hero-name .accent-line { color: var(--accent); display: block; }
+    .hero-sub {
+      margin-top: 2rem;
+      max-width: 560px;
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .hero-sub strong { color: var(--fg); font-weight: 500; }
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2.5rem;
+    }
+    .chip {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--bg-line);
+      border-radius: 2px;
+      padding: 0.35rem 0.8rem;
+      color: var(--fg-muted);
+      background: var(--bg-card);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem; right: 3rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      writing-mode: vertical-rl;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--fg-muted));
+    }
+
+    /* ── ABOUT ── */
+    #about .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+    }
+    .about-headline em { font-style: normal; color: var(--accent); }
+    .about-body { color: var(--fg-muted); font-size: 0.97rem; line-height: 1.85; font-weight: 300; }
+    .about-body strong { color: var(--fg); font-weight: 500; }
+    .about-body p + p { margin-top: 1.25rem; }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--bg-line);
+    }
+    .exp-item:first-child { border-top: 1px solid var(--bg-line); }
+    .exp-company {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .exp-period { font-size: 0.82rem; color: var(--fg-muted); font-weight: 300; }
+    .exp-location { font-size: 0.78rem; color: var(--fg-muted); font-weight: 300; margin-top: 0.15rem; opacity: 0.7; }
+    .exp-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.02em;
+    }
+    .exp-title-note { font-size: 0.8rem; font-weight: 400; color: var(--fg-muted); font-family: var(--font-body); }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .exp-bullets li {
+      font-size: 0.92rem;
+      color: var(--fg-muted);
+      display: flex;
+      gap: 0.75rem;
+      line-height: 1.65;
+    }
+    .exp-bullets li::before { content: '—'; color: var(--accent); flex-shrink: 0; opacity: 0.6; }
+
+    /* ── PROJECT CARD ── */
+    .project-card {
+      border: 1px solid var(--bg-line);
+      border-radius: 4px;
+      padding: 2.5rem;
+      background: var(--bg-card);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: rgba(0,196,204,0.3); }
+    .project-tag {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .project-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+      margin-bottom: 0.75rem;
+    }
+    .project-desc {
+      font-size: 0.93rem;
+      color: var(--fg-muted);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 1.5rem;
+    }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--fg-muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--bg-line);
+      padding: 0.25rem 0.65rem;
+      border-radius: 2px;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      padding: 0.65rem 1.2rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      align-self: flex-start;
+      transition: background 0.2s, color 0.2s;
+    }
+    .project-link:hover { background: var(--accent); color: var(--bg); }
+    .project-link svg { width: 13px; height: 13px; fill: currentColor; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--bg-line);
+      background: var(--bg-line);
+    }
+    .skill-group { background: var(--bg); padding: 1.75rem; }
+    .skill-group-label {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+    .skill-items { font-size: 0.88rem; color: var(--fg-muted); line-height: 1.9; }
+
+    /* ── EDUCATION ── */
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--bg-line);
+      background: var(--bg-line);
+    }
+    .edu-item {
+      background: var(--bg);
+      padding: 1.75rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+    }
+    .edu-degree {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 0.2rem;
+    }
+    .edu-school { font-size: 0.85rem; color: var(--fg-muted); }
+    .edu-year {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-weight: 600;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── CONTACT ── */
+    .contact-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+      margin-bottom: 2.5rem;
+    }
+    .contact-headline .accent-line { color: var(--accent); display: block; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fg);
+      border: 1.5px solid var(--bg-line);
+      padding: 0.8rem 1.4rem;
+      border-radius: 3px;
+      background: var(--bg-card);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .contact-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--bg-line);
+      padding: 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--fg-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .footer-note { font-size: 0.78rem; color: var(--fg-muted); opacity: 0.5; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+    .hero-name    { animation: fadeUp 0.7s 0.1s ease both; }
+    .hero-sub     { animation: fadeUp 0.7s 0.2s ease both; }
+    .hero-chips   { animation: fadeUp 0.7s 0.3s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 1.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem 0; }
+      #about .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .project-card { grid-template-columns: 1fr; }
+      .hero-scroll { display: none; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">steve boyer<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta"><a href="https://linkedin.com/in/steve-boyer" target="_blank">Connect</a></div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-eyebrow">Principal Software Engineer · Colorado Springs, CO</p>
+    <h1 class="hero-name">
+      Stephen<br />
+      <span class="accent-line">Boyer.</span>
+    </h1>
+    <p class="hero-sub">
+      <strong>10+ years of Java development</strong> across large-scale enterprise platforms.
+      Owning full feature lifecycles, maintaining ~60 high-availability applications,
+      and building the systems — and the teams — that keep them running.
+    </p>
+    <div class="hero-chips">
+      <span class="chip">Java · Spring Boot</span>
+      <span class="chip">Jakarta EE</span>
+      <span class="chip">Event-Driven Systems</span>
+      <span class="chip">High-Availability</span>
+      <span class="chip">CI/CD</span>
+      <span class="chip">Apigee · GCP</span>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <div class="about-inner">
+      <h2 class="about-headline">
+        10+ years.<br />
+        <em>60 apps.</em><br />
+        Zero<br />
+        hand-waving.
+      </h2>
+      <div class="about-body">
+        <p>
+          I'm a Principal Software Engineer at Verizon where I own the full feature lifecycle
+          for an enterprise event-driven platform — architecture, development, deployment,
+          production support, and everything in between. That means <strong>~60 high-availability
+          Java applications</strong>, 6 databases, and an 8-engineer team I help keep sharp.
+        </p>
+        <p>
+          My background runs from small AI/translation startups to the carrier-grade scale of
+          a national telecom platform. I've driven major infrastructure migrations, built CI
+          pipelines, defined coding standards, and mentored engineers at every level.
+        </p>
+        <p>
+          Currently pursuing an <strong>M.S. in AI &amp; Machine Learning</strong> at CSU Global.
+          Eagle Scout. Avalanche fan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-company">Verizon</div>
+        <div class="exp-period">Oct 2022 – Present</div>
+        <div class="exp-location">Colorado Springs, CO</div>
+      </div>
+      <div>
+        <div class="exp-title">Principal Software Engineer</div>
+        <ul class="exp-bullets">
+          <li>Own full feature lifecycle — architecture, development, deployment, production support — for an enterprise event-driven platform supporting ~2,000 users and multiple downstream systems.</li>
+          <li>Maintain and evolve ~60 high-availability Java applications built on Spring and Jakarta EE, running on WildFly across on-prem RHEL servers.</li>
+          <li>Drove major platform upgrade from JBoss 5 to WildFly, enabling continued vendor support and unblocking future modernization.</li>
+          <li>Define and enforce engineering best practices and coding standards; conduct thorough code reviews across all experience levels.</li>
+          <li>Mentor engineers through structured guidance, driving measurable improvements to code quality, documentation, and operational practices.</li>
+          <li>Implement CI pipelines using Jenkins and Docker, improving build consistency and early defect detection.</li>
+          <li>Took on additional ownership and coordination responsibilities following team reductions, supporting an 8-engineer team (previously 12).</li>
+          <li>Lead root-cause analysis and on-call production support across 6 databases and numerous backend services.</li>
+          <li>Integrate and maintain internal and partner-facing APIs exposed through Apigee (GCP).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-company">Verizon</div>
+        <div class="exp-period">May 2019 – Oct 2022</div>
+        <div class="exp-location">Irving, TX</div>
+      </div>
+      <div>
+        <div class="exp-title">Senior Software Engineer</div>
+        <ul class="exp-bullets">
+          <li>Designed and implemented backend Java and Spring features, owning components from design through production deployment.</li>
+          <li>Built RESTful APIs and asynchronous, event-driven processing components supporting high-throughput workflows.</li>
+          <li>Optimized Oracle SQL queries and schema design to improve core application performance.</li>
+          <li>Improved logging and monitoring to reduce mean time to diagnose production issues.</li>
+          <li>Developed Bash and Python scripts to automate local workflows and operational tasks.</li>
+          <li>Collaborated closely with product, QA, and operations teams to deliver reliable releases.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-company">Brooksource</div>
+        <div class="exp-period">Apr 2018 – Apr 2019</div>
+        <div class="exp-location">Colorado Springs, CO</div>
+      </div>
+      <div>
+        <div class="exp-title">Software Application Programmer III <span class="exp-title-note">· Verizon Contractor</span></div>
+        <ul class="exp-bullets">
+          <li>Extended and debugged enterprise Java web applications using JBoss, MySQL, and Hibernate.</li>
+          <li>Integrated static code analysis and security scanning into build processes.</li>
+          <li>Refactored legacy modules to improve readability and maintainability.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-company">Self-Employed</div>
+        <div class="exp-period">Nov 2016 – Apr 2018</div>
+        <div class="exp-location">Green River, WY</div>
+      </div>
+      <div>
+        <div class="exp-title">Independent Contractor</div>
+        <ul class="exp-bullets">
+          <li>Built RESTful APIs and backend services using Java and Spring for small enterprise clients.</li>
+          <li>Assisted clients migrating legacy systems toward service-oriented architectures.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-company">Language I/O</div>
+        <div class="exp-period">May 2015 – Nov 2016</div>
+        <div class="exp-location">Cheyenne, WY</div>
+      </div>
+      <div>
+        <div class="exp-title">Software Engineer</div>
+        <ul class="exp-bullets">
+          <li>Developed backend Java components and REST endpoints for a cloud-based translation platform (MySQL).</li>
+          <li>Built UI features and internal tools supporting translation workflows.</li>
+          <li>Integrated third-party APIs including Oracle Service Cloud and Salesforce.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <div class="project-card">
+      <div>
+        <div class="project-tag">Personal Project · 2026</div>
+        <div class="project-name">PuckWatch</div>
+        <p class="project-desc">
+          Event-driven NHL alert service built with Spring Boot, RabbitMQ, and MySQL.
+          Polls the NHL API on a scheduled interval, detects score changes, deduplicates
+          events, evaluates subscriber alert rules, and persists notifications.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Spring Boot</span>
+          <span class="stack-tag">RabbitMQ</span>
+          <span class="stack-tag">MySQL</span>
+          <span class="stack-tag">REST API</span>
+          <span class="stack-tag">Event-Driven</span>
+          <span class="stack-tag">Docker</span>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com/steveboyer/puck-watch" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        View on GitHub
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Skills &amp; Stack</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">Backend</div>
+        <div class="skill-items">Java · Spring Boot · Jakarta EE · Hibernate / JPA · Python</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Architecture</div>
+        <div class="skill-items">Distributed Systems · Event-Driven · Messaging · REST APIs · High-Availability Design</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Data</div>
+        <div class="skill-items">MySQL · Oracle DB</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Platforms</div>
+        <div class="skill-items">WildFly · JBoss · Linux (RHEL)</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">DevOps &amp; Tools</div>
+        <div class="skill-items">Jenkins · Docker · Git · Maven · Gradle · CI/CD · Bash · Jira · Agile / Scrum</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">APIs &amp; Gateways</div>
+        <div class="skill-items">Apigee (GCP) · RESTful API Design · Third-Party Integrations</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-label">Education</div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">M.S. in Artificial Intelligence &amp; Machine Learning</div>
+          <div class="edu-school">Colorado State University — Global</div>
+        </div>
+        <div class="edu-year">In Progress</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">B.S. in Computer Engineering</div>
+          <div class="edu-school">University of Wyoming · Laramie, WY</div>
+        </div>
+        <div class="edu-year">2015</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <h2 class="contact-headline">
+      Let's connect<br />
+      <span class="accent-line">on LinkedIn.</span>
+    </h2>
+    <div class="contact-links">
+      <a class="contact-link" href="https://linkedin.com/in/steve-boyer" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-link" href="https://github.com/steveboyer" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-name">Stephen Boyer</div>
+    <div class="footer-note">Principal Software Engineer · Colorado Springs, CO</div>
+  </footer>
+
+</body>
+</html>
