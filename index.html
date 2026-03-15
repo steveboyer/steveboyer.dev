@@ -33,7 +33,7 @@
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      /* subtle grid overlay */
+      /* subtle grid overlay like hytch */
       background-image:
         linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
@@ -56,12 +56,15 @@
     .nav-logo {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-      color: var(--fg);
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
       text-decoration: none;
+      background: linear-gradient(90deg, #00e8d0 0%, #00a8cc 60%, #0080cc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       font-size: 0.72rem;
@@ -152,7 +155,8 @@
       color: var(--fg);
       margin-bottom: 2.5rem;
     }
-    .hero-name .teal {
+    /* ─── GRADIENT TEXT UTILITY ─── */
+    .grad {
       background: linear-gradient(90deg, #00e8d0 0%, #00a8cc 60%, #0080cc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -371,7 +375,7 @@
       color: var(--fg);
       margin-bottom: 2.75rem;
     }
-    .contact-hed .teal { color: var(--accent); display: block; }
+    .contact-hed .teal { display: block; }
     .clinks { display: flex; flex-wrap: wrap; gap: 1rem; }
     .clink {
       display: inline-flex;
@@ -438,7 +442,7 @@
 
   <!-- NAV -->
   <nav>
-    <a class="nav-logo" href="#">steve boyer<span>.</span></a>
+    <a class="nav-logo" href="#">sb</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -453,7 +457,7 @@
   <div id="hero">
     <p class="hero-eyebrow">Principal Software Engineer · Colorado Springs, CO</p>
     <h1 class="hero-name">
-      Steve<br><span class="teal">Boyer</span>
+      Steve<br><span class="teal grad">Boyer.</span>
     </h1>
     <p class="hero-body">
       <strong>10+ years of Java development</strong> across large-scale enterprise platforms.
@@ -478,7 +482,7 @@
     <div class="about-grid">
       <h2 class="about-hed">
         10+ years.<br>
-        <em>60 apps.</em><br>
+        <em class="grad">60 apps.</em><br>
         Zero<br>hand-waving.
       </h2>
       <div class="about-copy">
@@ -681,7 +685,7 @@
   <div id="contact" class="section-block">
     <div class="label">Contact</div>
     <h2 class="contact-hed">
-      Let's connect<br><span class="teal">on LinkedIn.</span>
+      Let's connect<br><span class="teal grad">on LinkedIn.</span>
     </h2>
     <div class="clinks">
       <a class="clink" href="https://linkedin.com/in/steve-boyer" target="_blank">
