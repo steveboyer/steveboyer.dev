@@ -40,7 +40,6 @@
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      /* subtle grid overlay like hytch */
       background-image:
         linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
@@ -159,7 +158,6 @@
       color: var(--fg);
       margin-bottom: 2.5rem;
     }
-    /* ─── GRADIENT TEXT UTILITY ─── */
     .grad {
       background: linear-gradient(90deg, #00e8d0 0%, #00a8cc 60%, #0080cc 100%);
       -webkit-background-clip: text;
@@ -315,6 +313,107 @@
     .proj-btn:hover { background: var(--accent); color: var(--bg); }
     .proj-btn svg { width: 13px; height: 13px; fill: currentColor; }
 
+    /* ─── APPS ─── */
+    .apps-card {
+      border: 1px solid var(--bg-line);
+      border-radius: 3px;
+      background: var(--bg-card);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 0;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .apps-card:hover { border-color: rgba(0,196,204,0.28); }
+    .apps-circle-side {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      border-right: 1px solid var(--bg-line);
+    }
+    .apps-circle-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+    }
+    .apps-circle-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,196,204,0.12);
+    }
+    .app-icon-pin {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+    }
+    .app-icon-pin img {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid rgba(0,196,204,0.2);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .app-icon-pin img:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(0,196,204,0.35);
+    }
+    /* pentagon positions: r=84px from center of 220px box (center=110px), 5 points at 72deg steps starting top */
+    .app-icon-pin:nth-child(1) { top: calc(110px - 26px - 84px);       left: calc(110px - 26px); }
+    .app-icon-pin:nth-child(2) { top: calc(110px - 26px - 25.9px);     left: calc(110px - 26px + 79.9px); }
+    .app-icon-pin:nth-child(3) { top: calc(110px - 26px + 67.9px);     left: calc(110px - 26px + 49.4px); }
+    .app-icon-pin:nth-child(4) { top: calc(110px - 26px + 67.9px);     left: calc(110px - 26px - 49.4px); }
+    .app-icon-pin:nth-child(5) { top: calc(110px - 26px - 25.9px);     left: calc(110px - 26px - 79.9px); }
+    .apps-list-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+    .app-row {
+      display: flex;
+      flex-direction: column;
+      padding: 1.1rem 2rem;
+      border-bottom: 1px solid var(--bg-line);
+    }
+    .app-row:last-child { border-bottom: none; }
+    .app-row-top {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.2rem;
+    }
+    .app-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+    .app-platform {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.65;
+    }
+    .app-desc {
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    @media (max-width: 760px) {
+      .apps-card { grid-template-columns: 1fr; }
+      .apps-circle-side { border-right: none; border-bottom: 1px solid var(--bg-line); }
+    }
+
     /* ─── SKILLS ─── */
     .skills-grid {
       display: grid;
@@ -440,6 +539,9 @@
       .project-card { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 0.4rem; text-align: center; }
     }
+    @media (max-width: 460px) {
+      .apps-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
@@ -451,6 +553,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#apps">Apps</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -625,6 +728,66 @@
         <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
         View on GitHub
       </a>
+    </div>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- APPS -->
+  <div id="apps" class="section-block">
+    <div class="label">Apps</div>
+    <div class="apps-card">
+
+      <!-- circle of icons -->
+      <div class="apps-circle-side">
+        <div class="apps-circle-wrap">
+          <div class="app-icon-pin"><img src="icons/nudge.png" alt="Nudge" /></div>
+          <div class="app-icon-pin"><img src="icons/budge.png" alt="Budge" /></div>
+          <div class="app-icon-pin"><img src="icons/macrosight.png" alt="MacroSight" /></div>
+          <div class="app-icon-pin"><img src="icons/bolt.png" alt="Bolt" /></div>
+          <div class="app-icon-pin"><img src="icons/sift.png" alt="Sift" /></div>
+        </div>
+      </div>
+
+      <!-- list of apps -->
+      <div class="apps-list-side">
+        <div class="app-row">
+          <div class="app-row-top">
+            <span class="app-name">Nudge</span>
+            <span class="app-platform">iOS · macOS · watchOS</span>
+          </div>
+          <div class="app-desc">Reminder and notification app with category-based scheduling, privacy controls, and snooze options.</div>
+        </div>
+        <div class="app-row">
+          <div class="app-row-top">
+            <span class="app-name">Budge</span>
+            <span class="app-platform">iOS · watchOS</span>
+          </div>
+          <div class="app-desc">Strength training tracker with per-set weight logging, live heart rate via Apple Watch, and HealthKit integration.</div>
+        </div>
+        <div class="app-row">
+          <div class="app-row-top">
+            <span class="app-name">MacroSight</span>
+            <span class="app-platform">iOS</span>
+          </div>
+          <div class="app-desc">AI-powered nutrition tracker using Claude vision to identify foods from photos. Tracks macros, micros, and health safety alerts.</div>
+        </div>
+        <div class="app-row">
+          <div class="app-row-top">
+            <span class="app-name">Bolt</span>
+            <span class="app-platform">iOS</span>
+          </div>
+          <div class="app-desc">App locking and screen time management using Apple's ScreenTime API.</div>
+        </div>
+        <div class="app-row">
+          <div class="app-row-top">
+            <span class="app-name">Sift</span>
+            <span class="app-platform">iOS</span>
+          </div>
+          <div class="app-desc">On-device SMS filtering using CoreML. Quietly routes spam without sending anything to a server.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
