@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Steve Boyer</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Writing by Steve Boyer on Java platforms, AI engineering, and building software." />
+  <meta property="og:title" content="Blog — Steve Boyer" />
+  <meta property="og:description" content="Writing by Steve Boyer on Java platforms, AI engineering, and building software." />
+  <meta property="og:image" content="https://steveboyer.dev/og-image.png" />
+  <meta property="og:url" content="https://steveboyer.dev/blog" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0d0f;
+      --bg-card:   #0f1315;
+      --bg-line:   rgba(255,255,255,0.07);
+      --fg:        #eaeef1;
+      --fg-muted:  #6e8490;
+      --accent:    #00c4cc;
+      --accent-bg: rgba(0,196,204,0.08);
+      --font-display: 'Sora', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --max:       1080px;
+      --gutter:    clamp(1.5rem, 5vw, 4rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem var(--gutter);
+      background: rgba(10,13,15,0.82);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--bg-line);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--accent);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fg-muted);
+      transition: color 0.18s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a.is-active { color: var(--fg); }
+    .nav-cta a {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      padding: 0.5rem 1.2rem;
+      border-radius: 2px;
+      transition: background 0.18s, color 0.18s;
+    }
+    .nav-cta a:hover { background: var(--accent); color: var(--bg); }
+
+    /* ─── PAGE ─── */
+    main {
+      flex: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 9rem var(--gutter) 5rem;
+      width: 100%;
+    }
+    .page-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .page-hed {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      color: var(--fg);
+      margin-bottom: 2.5rem;
+    }
+    .page-hed .grad {
+      background: linear-gradient(135deg, var(--accent) 0%, #4dd3d8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .empty {
+      border: 1px solid var(--bg-line);
+      border-radius: 3px;
+      background: var(--bg-card);
+      padding: 3rem 2.5rem;
+      color: var(--fg-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 640px;
+    }
+    .empty p + p { margin-top: 0.85rem; }
+    .empty a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,196,204,0.4);
+      transition: border-color 0.18s, color 0.18s;
+    }
+    .empty a:hover { border-color: var(--accent); color: var(--fg); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--bg-line);
+      padding: 2rem var(--gutter);
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .foot-name {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+    .foot-note { font-size: 0.75rem; color: var(--fg-muted); opacity: 0.45; }
+
+    @media (max-width: 760px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      main { padding: 7rem 1.25rem 3rem; }
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">SB</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#skills">Skills</a></li>
+      <li><a href="/blog" class="is-active">Blog</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta"><a href="https://linkedin.com/in/steve-boyer" target="_blank">Connect</a></div>
+  </nav>
+
+  <main>
+    <div class="page-eyebrow">Blog</div>
+    <h1 class="page-hed">
+      Writing in<br><span class="grad">progress.</span>
+    </h1>
+    <div class="empty">
+      <p>First posts coming soon — notes from building large-scale Java platforms and shipping hands-on AI tooling.</p>
+      <p>In the meantime, you can find me on <a href="https://linkedin.com/in/steve-boyer">LinkedIn</a> and <a href="https://github.com/steveboyer">GitHub</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <span class="foot-name">Steve Boyer</span>
+    <span class="foot-note">Principal Software Engineer · Colorado Springs, CO</span>
+  </footer>
+
+</body>
+</html>
