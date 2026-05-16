@@ -257,6 +257,7 @@
       transition: border-color 0.2s;
     }
     .project-card:hover { border-color: rgba(0,196,204,0.28); }
+    .project-card + .project-card { margin-top: 1.5rem; }
     .proj-tag {
       font-family: var(--font-display);
       font-size: 0.62rem;
@@ -709,6 +710,27 @@
   <!-- PROJECTS -->
   <div id="projects" class="section-block">
     <div class="label">Projects</div>
+    <div class="project-card">
+      <div>
+        <div class="proj-tag">Personal Project · 2025 – 2026</div>
+        <div class="proj-name">MacroScape</div>
+        <p class="proj-desc">iOS calorie and macro tracker built solo, integrating the Anthropic Claude API
+        for multimodal food-photo analysis, OCR-then-LLM nutrition-label parsing, and refinement passes.
+        Multi-model orchestration across Haiku, Sonnet, and Opus. USDA-grounded evaluation pipeline
+        that falls through to verified data when model output is implausible. Prompt caching with
+        ephemeral cache_control blocks, per-call AI observability, and Keychain-based credential handling.</p>
+        <div class="stack">
+          <span class="stag">Swift</span>
+          <span class="stag">SwiftUI</span>
+          <span class="stag">SwiftData</span>
+          <span class="stag">Anthropic Claude API</span>
+          <span class="stag">MCP</span>
+          <span class="stag">Apple HealthKit</span>
+          <span class="stag">USDA Food Data Central</span>
+          <span class="stag">Apple Vision OCR</span>
+        </div>
+      </div>
+    </div>
     <div class="project-card">
       <div>
         <div class="proj-tag">Personal Project · 2026</div>
