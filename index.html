@@ -435,6 +435,31 @@
     }
     .sg-items { font-size: 0.87rem; color: var(--fg-muted); line-height: 1.95; }
 
+    /* ─── CURRENTLY BUILDING ─── */
+    .building-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--bg-line);
+      background: var(--bg-line);
+    }
+    .building-row {
+      background: var(--bg);
+      padding: 1.5rem 2rem;
+    }
+    .building-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 0.4rem;
+    }
+    .building-desc {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      line-height: 1.7;
+    }
+
     /* ─── EDUCATION ─── */
     .edu-list {
       display: flex;
@@ -603,6 +628,27 @@
         a national telecom platform. I've driven major infrastructure migrations, built CI
         pipelines, defined coding standards, and mentored engineers at every level.</p>
         <p>Currently pursuing an <strong>M.S. in AI &amp; Machine Learning</strong> at CSU Global.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- CURRENTLY BUILDING -->
+  <div id="building" class="section-block">
+    <div class="label">Currently Building</div>
+    <div class="building-list" data-building-list>
+      <div class="building-row">
+        <div class="building-name">MacroScape Proxy</div>
+        <p class="building-desc">AWS Lambda, API Gateway, DynamoDB, and CDK in TypeScript. Apple Sign-In authentication, per-user rate limiting, Anthropic API forwarding. In active development.</p>
+      </div>
+      <div class="building-row">
+        <div class="building-name">MacroScape (iOS)</div>
+        <p class="building-desc">Adding new alert rules and tightening the per-call AI observability inspector. Working toward App Store launch once the proxy is in place.</p>
+      </div>
+      <div class="building-row">
+        <div class="building-name">M.S. in AI and Machine Learning</div>
+        <p class="building-desc">Pursuing at Colorado State University Global. Currently in coursework on foundations.</p>
       </div>
     </div>
   </div>
@@ -914,6 +960,36 @@
     <span class="foot-name">Steve Boyer</span>
     <span class="foot-note">Principal Software Engineer · Colorado Springs, CO</span>
   </footer>
+
+  <script>
+    (async () => {
+      const list = document.querySelector('[data-building-list]');
+      if (!list) return;
+      try {
+        const res = await fetch('/content/currently-building.json', { cache: 'no-store' });
+        if (!res.ok) return;
+        const items = await res.json();
+        if (!Array.isArray(items) || items.length === 0) return;
+        const frag = document.createDocumentFragment();
+        for (const item of items) {
+          const row = document.createElement('div');
+          row.className = 'building-row';
+          const name = document.createElement('div');
+          name.className = 'building-name';
+          name.textContent = item.name ?? '';
+          const desc = document.createElement('p');
+          desc.className = 'building-desc';
+          desc.textContent = item.description ?? '';
+          row.appendChild(name);
+          row.appendChild(desc);
+          frag.appendChild(row);
+        }
+        list.replaceChildren(frag);
+      } catch (_) {
+        // keep static fallback
+      }
+    })();
+  </script>
 
 </body>
 </html>
