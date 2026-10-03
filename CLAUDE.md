@@ -10,6 +10,9 @@ Two pages:
 - `index.html` — the resume page (everything: hero, experience, projects, apps, skills, contact).
 - `blog/index.html` — the `/blog` route. Currently an empty-state placeholder; no post pipeline yet.
 
+Plus the Sift Filter app pages, which App Store Connect links to (keep the URLs stable):
+- `sift/support/index.html` and `sift/privacy/index.html`, served at `https://sift.steveboyer.dev/support` and `/privacy` via the host rules in `_redirects` (the subdomain is a domain alias of this Netlify site). They copy the blog page's tokens and styles.
+
 No package manager, no bundler, no test suite, no CI config in-repo.
 
 ## Visual language is shared by inline-copy, not by linked stylesheet

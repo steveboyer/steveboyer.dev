@@ -1,0 +1,4 @@
+# Sift Filter pages live under /sift/ and are served at sift.steveboyer.dev.
+# The subdomain must be added as a domain alias of this Netlify site.
+https://sift.steveboyer.dev/    /sift/support/   200!
+https://sift.steveboyer.dev/*   /sift/:splat     200!

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sift Filter Privacy Policy — Steve Boyer</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Privacy policy for Sift Filter, an on-device SMS filter for iPhone. Sift collects no data." />
+  <meta property="og:title" content="Sift Filter Privacy Policy" />
+  <meta property="og:description" content="Sift Filter collects no data. All filtering happens on your iPhone." />
+  <meta property="og:image" content="https://steveboyer.dev/og-image.png" />
+  <meta property="og:url" content="https://sift.steveboyer.dev/privacy" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0d0f;
+      --bg-card:   #0f1315;
+      --bg-line:   rgba(255,255,255,0.07);
+      --fg:        #eaeef1;
+      --fg-muted:  #6e8490;
+      --accent:    #00c4cc;
+      --accent-bg: rgba(0,196,204,0.08);
+      --font-display: 'Sora', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --max:       1080px;
+      --gutter:    clamp(1.5rem, 5vw, 4rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem var(--gutter);
+      background: rgba(10,13,15,0.82);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--bg-line);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--accent);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fg-muted);
+      transition: color 0.18s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a.is-active { color: var(--fg); }
+
+    /* ─── PAGE ─── */
+    main {
+      flex: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 9rem var(--gutter) 5rem;
+      width: 100%;
+    }
+    .page-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .page-hed {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      color: var(--fg);
+      margin-bottom: 2.5rem;
+    }
+    .page-hed .grad {
+      background: linear-gradient(135deg, var(--accent) 0%, #4dd3d8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .doc {
+      border: 1px solid var(--bg-line);
+      border-radius: 3px;
+      background: var(--bg-card);
+      padding: 3rem 2.5rem;
+      max-width: 720px;
+    }
+    .doc h2 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 2rem 0 0.6rem;
+    }
+    .doc h2:first-child { margin-top: 0; }
+    .doc p, .doc li { color: var(--fg-muted); font-size: 1rem; }
+    .doc p + p { margin-top: 0.85rem; }
+    .doc ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+    .doc li + li { margin-top: 0.35rem; }
+    .doc strong { color: var(--fg); font-weight: 500; }
+    .doc a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,196,204,0.4);
+      transition: border-color 0.18s, color 0.18s;
+    }
+    .doc a:hover { border-color: var(--accent); color: var(--fg); }
+    .updated { margin-top: 2rem; font-size: 0.85rem; color: var(--fg-muted); opacity: 0.7; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--bg-line);
+      padding: 2rem var(--gutter);
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .foot-name {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+    .foot-note { font-size: 0.75rem; color: var(--fg-muted); opacity: 0.45; }
+
+    @media (max-width: 760px) {
+      nav { padding: 1rem 1.25rem; }
+      main { padding: 7rem 1.25rem 3rem; }
+      .doc { padding: 2rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+    }
+    @media (max-width: 460px) {
+      .doc { padding: 1.5rem 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="https://steveboyer.dev/">SB</a>
+    <ul class="nav-links">
+      <li><a href="https://sift.steveboyer.dev/support">Support</a></li>
+      <li><a href="https://sift.steveboyer.dev/privacy" class="is-active">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-eyebrow">Sift Filter</div>
+    <h1 class="page-hed">
+      Privacy<br><span class="grad">policy.</span>
+    </h1>
+    <div class="doc">
+      <h2>The short version</h2>
+      <p><strong>Sift Filter collects no data.</strong> Nothing you type into the app and no message you receive ever leaves your iPhone.</p>
+
+      <h2>What Sift does with your messages</h2>
+      <p>When a text arrives from a sender who isn't in your contacts, iOS hands its text to Sift's message filter on your iPhone. Sift compares it against the filters you created and tells iOS whether to file it under Junk, Promotions or Transactions, or leave it in your inbox. The message is not stored, logged or copied anywhere.</p>
+      <p>iOS never gives Sift iMessages or messages from your contacts.</p>
+
+      <h2>What Sift stores</h2>
+      <p>Your filters and settings are stored only on your iPhone, in the app's own storage. They are removed when you delete the app.</p>
+
+      <h2>What Sift does not do</h2>
+      <ul>
+        <li>No network access. The message filter has no internet connection and Sift has no servers.</li>
+        <li>No accounts or sign-in.</li>
+        <li>No analytics, tracking, advertising or third-party SDKs.</li>
+        <li>No sharing or selling of any data, because none is collected.</li>
+      </ul>
+
+      <h2>Sharing filters</h2>
+      <p>If you choose to share filters, Sift creates a link containing only those filters' settings and hands it to the iOS share sheet. Where it goes from there is up to you.</p>
+
+      <h2>Children</h2>
+      <p>Sift collects no data from anyone, including children.</p>
+
+      <h2>Changes and contact</h2>
+      <p>If this policy changes, the new version will be posted on this page. Questions: <a href="mailto:support@REPLACE-ME">support@REPLACE-ME</a>.</p>
+
+      <p class="updated">Last updated October 3, 2026</p>
+    </div>
+  </main>
+
+  <footer>
+    <span class="foot-name">Steve Boyer</span>
+    <span class="foot-note">Sift Filter for iPhone</span>
+  </footer>
+
+</body>
+</html>

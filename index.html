@@ -410,6 +410,12 @@
       line-height: 1.6;
       font-weight: 300;
     }
+    .app-desc a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,196,204,0.4);
+    }
+    .app-desc a:hover { border-color: var(--accent); color: var(--fg); }
     @media (max-width: 760px) {
       .apps-card { grid-template-columns: 1fr; }
       .apps-circle-side { border-right: none; border-bottom: 1px solid var(--bg-line); }
@@ -875,7 +881,7 @@
             <span class="app-name">Sift</span>
             <span class="app-platform">iOS</span>
           </div>
-          <div class="app-desc">On-device SMS filtering using CoreML. Quietly routes spam without sending anything to a server.</div>
+          <div class="app-desc">On-device SMS filtering with your own block and allow rules. Quietly routes spam without sending anything to a server. <a href="https://sift.steveboyer.dev/support">Support &amp; privacy</a></div>
         </div>
       </div>
 
