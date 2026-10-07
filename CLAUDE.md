@@ -17,7 +17,14 @@ No package manager, no bundler, no test suite, no CI config in-repo.
 
 ## Visual language is shared by inline-copy, not by linked stylesheet
 
-Both pages have their own `<style>` block in `<head>`. The blog page duplicates the design tokens (`:root` custom properties) and the nav/footer styles from `index.html`. If you change a design token in one place, change it in both, or extract to a shared `styles.css` and link from both.
+Each page has its own `<style>` block in `<head>`, and four pages carry a copy of the design tokens (`:root` custom properties) and the nav/footer styles from `index.html`:
+
+- `index.html`
+- `blog/index.html`
+- `sift/support/index.html`
+- `sift/privacy/index.html`
+
+A design token change goes into all four. Any new page that copies the tokens joins this list. (Or extract them to a shared `styles.css` linked from every page.)
 
 This is acceptable while the blog is one empty-state page; revisit if posts get added.
 
