@@ -11,20 +11,20 @@ Two pages:
 - `blog/index.html` — the `/blog` route. Currently an empty-state placeholder; no post pipeline yet.
 
 Plus the Sift Filter app pages, which App Store Connect links to (keep the URLs stable):
-- `sift/support/index.html` and `sift/privacy/index.html`, served at `https://sift.steveboyer.dev/support` and `/privacy` via the host rules in `_redirects` (the subdomain is a domain alias of this Netlify site). They copy the blog page's tokens and styles.
+- `sift/support/index.html` and `sift/privacy/index.html`, served at `https://steveboyer.dev/sift/support/` and `https://steveboyer.dev/sift/privacy/` (Steve's choice; `sift.steveboyer.dev` has no DNS). Their shared styles, design tokens included, are in `sift/sift.css`, linked from both pages.
+- `_redirects` still holds the old `sift.steveboyer.dev` host rules. They're left in place and do nothing today, but if the subdomain were ever revived, its `/*` → `/sift/:splat` rule would make the `/sift/…` paths 404 there (they'd map to `/sift/sift/…`).
 
 No package manager, no bundler, no test suite, no CI config in-repo.
 
-## Visual language is shared by inline-copy, not by linked stylesheet
+## Visual language is shared by copying, not by one site-wide stylesheet
 
-Each page has its own `<style>` block in `<head>`, and four pages carry a copy of the design tokens (`:root` custom properties) and the nav/footer styles from `index.html`:
+The design tokens (`:root` custom properties) and the nav/footer styles from `index.html` are copied into three places:
 
-- `index.html`
-- `blog/index.html`
-- `sift/support/index.html`
-- `sift/privacy/index.html`
+- `index.html` (its `<style>` block)
+- `blog/index.html` (its `<style>` block)
+- `sift/sift.css` (linked from both Sift pages, which have no token copy of their own)
 
-A design token change goes into all four. Any new page that copies the tokens joins this list. (Or extract them to a shared `styles.css` linked from every page.)
+A design token change goes into all three. Any new page or stylesheet that copies the tokens joins this list. (Or extract them to a shared `styles.css` linked from every page.)
 
 This is acceptable while the blog is one empty-state page; revisit if posts get added.
 
@@ -34,7 +34,7 @@ This is acceptable while the blog is one empty-state page; revisit if posts get 
 - **Design tokens** are CSS custom properties defined in `:root`: `--bg`, `--bg-card`, `--bg-line`, `--fg`, `--fg-muted`, `--accent` (teal `#00c4cc`), `--font-display` (Sora), `--font-body` (DM Sans), `--max` (1080px content width), `--gutter`. Reuse these rather than hardcoding colors or fonts.
 - **Section IDs are linked from the nav** (`#about`, `#experience`, `#projects`, `#apps`, `#skills`, `#contact`) plus `/blog`. If you rename or remove an `id`, update `nav-links` to match.
 - **Responsive breakpoints** are at `760px` and `460px`. Test layout changes against both.
-- **Preview locally** by opening `index.html` (or `blog/index.html`) directly in a browser. No server needed.
+- **Preview locally** by opening `index.html` (or `blog/index.html`) directly in a browser. No server needed. The Sift pages are the exception: they link `/sift/sift.css` by a root-relative path, so opened from disk they render unstyled. Preview them through a local server run from the repo root (for example `python3 -m http.server`, then `http://localhost:8000/sift/support/`).
 
 ## Dynamic content: Currently Building
 
