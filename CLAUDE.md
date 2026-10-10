@@ -1,19 +1,19 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## What this repo is
 
 Steve Boyer's personal resume site. Static HTML, no build step. Hosted on Netlify; deploys are triggered by pushing to `main` on `github.com:steveboyer/steveboyer.dev`.
 
-Two pages:
+Main pages:
 - `index.html` — the resume page (everything: hero, experience, projects, apps, skills, contact).
 - `blog/index.html` — the `/blog` route. Currently an empty-state placeholder; no post pipeline yet.
 
-Plus the Sift Filter app pages, which App Store Connect links to (keep the URLs stable):
-- `sift/support/index.html` and `sift/privacy/index.html`, served at `https://sift.steveboyer.dev/support` and `/privacy` via the host rules in `_redirects` (the subdomain is a domain alias of this Netlify site). They copy the blog page's tokens and styles.
+Plus the Sift Filter app pages:
+- `sift/support/index.html` and `sift/privacy/index.html`. The URLs moved to steveboyer.dev/sift/ (D094). App Store Connect's support and privacy URLs must point there. They copy the blog page's tokens and styles.
 
 No package manager, no bundler, no test suite, no CI config in-repo.
+
+No issues.md backlog; commit subjects carry no issue ID.
 
 ## Visual language is shared by inline-copy, not by linked stylesheet
 
@@ -50,26 +50,18 @@ To add another dynamic-content section later, follow the same pattern: render a 
 
 `resume.pdf` at the repo root is served at `/resume.pdf`, linked from the Contact section.
 
-**Source of truth is `~/git/resumes`** (separate repo, Typst). The workflow is:
-1. Edit `main_servicenow.typ` in that repo.
-2. `cp main_servicenow.typ main.typ` (the canonical compile target).
-3. `typst compile main.typ SteveBoyer.pdf`.
-4. `cp SteveBoyer.pdf ~/git/steveboyer.dev/resume.pdf` and commit here.
-
-Don't try to compile typst from inside this repo or as a Netlify build step.
+`resume.pdf` is replaced by hand. Its Typst source is not in a known repo; don't go looking for it or try to rebuild the PDF unless Steve asks.
 
 ## Assets
 
 - `icons/` — small per-app PNGs referenced by the Apps section.
 - `*Icon.png` at the repo root and `og-image.png` are large source/social assets. Don't rename without updating `<meta property="og:image">` and any `<img src>` references.
-- `favicon.svg` referenced from `<head>` on both pages.
+- `favicon.svg` referenced from `<head>` on all four pages.
 
 ## Content edits
 
 When editing resume content in `index.html` (experience bullets, skills, projects), also update the matching summary numbers in the hero/about sections if they change (e.g., "10+ years", "60 apps", "2M+ daily transactions"). They're hand-maintained, not generated.
 
-If a resume change should also flow to the PDF, edit the Typst source in `~/git/resumes` and follow the resume sync flow above.
-
 ## Deployment
 
-`git push origin main` triggers a Netlify rebuild and publishes to https://steveboyer.dev. There is no staging environment; verify changes in a local browser before pushing.
+`git push origin main` triggers a Netlify rebuild and publishes to https://steveboyer.dev. There is no staging environment. Ask Steve before every push to main (other branches are free). Review and commit first; after the deploy, check the changed pages with curl.
