@@ -1,3 +1,7 @@
+# Repo docs aren't part of the site. The ! forces the 404 although the files exist.
+/CLAUDE.md   /404   404!
+/README.md   /404   404!
+
 # Sift Filter pages live under /sift/ and are served at sift.steveboyer.dev.
 # The subdomain must be added as a domain alias of this Netlify site.
 https://sift.steveboyer.dev/    /sift/support/   200!
