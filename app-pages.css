@@ -1,4 +1,4 @@
-/* Shared styles for the Sift Filter pages (sift/support, sift/privacy).
+/* Shared styles for the app support and privacy pages (sift/…, bolt/…).
    Design tokens are copied from index.html and blog/index.html; keep them in sync. */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
