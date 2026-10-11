@@ -55,7 +55,7 @@ To add another dynamic-content section later, follow the same pattern: render a 
 ## Assets
 
 - `icons/` — small per-app PNGs referenced by the Apps section.
-- `*Icon.png` at the repo root and `og-image.png` are large source/social assets. Don't rename without updating `<meta property="og:image">` and any `<img src>` references.
+- `og-image.png` at the repo root is the large social image. Don't rename without updating `<meta property="og:image">` and any `<img src>` references.
 - `favicon.svg` referenced from `<head>` on all four pages.
 
 ## Content edits
