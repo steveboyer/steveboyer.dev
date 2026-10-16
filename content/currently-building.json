@@ -1,9 +1,5 @@
 [
   {
-    "name": "MacroScape Proxy",
-    "description": "AWS Lambda, API Gateway, DynamoDB, and CDK in TypeScript. Apple Sign-In authentication, per-user rate limiting, Anthropic API forwarding. In active development."
-  },
-  {
     "name": "MacroScape (iOS)",
     "description": "Adding new alert rules and tightening the per-call AI observability inspector. Working toward App Store launch once the proxy is in place."
   },
