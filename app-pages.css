@@ -150,10 +150,10 @@ main {
 .doc a {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid rgba(0,196,204,0.4);
+  border-bottom: 1px solid var(--accent);
   transition: border-color 0.18s, color 0.18s;
 }
-.doc a:hover { border-color: var(--accent); color: var(--fg); }
+.doc a:hover { border-color: var(--fg); color: var(--fg); }
 /* --fg-muted at full opacity is about 4.8:1 on --bg-card (WCAG AA). */
 .updated { margin-top: 2rem; font-size: 0.85rem; color: var(--fg-muted); }
 

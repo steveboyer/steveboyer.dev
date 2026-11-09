@@ -145,10 +145,10 @@
     .empty a {
       color: var(--accent);
       text-decoration: none;
-      border-bottom: 1px solid rgba(0,196,204,0.4);
+      border-bottom: 1px solid var(--accent);
       transition: border-color 0.18s, color 0.18s;
     }
-    .empty a:hover { border-color: var(--accent); color: var(--fg); }
+    .empty a:hover { border-color: var(--fg); color: var(--fg); }
 
     /* ─── FOOTER ─── */
     footer {
@@ -169,7 +169,7 @@
       text-transform: uppercase;
       color: var(--fg-muted);
     }
-    .foot-note { font-size: 0.75rem; color: var(--fg-muted); opacity: 0.45; }
+    .foot-note { font-size: 0.75rem; color: var(--fg-muted); }
 
     @media (max-width: 760px) {
       nav { padding: 1rem 1.25rem; }

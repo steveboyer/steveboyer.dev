@@ -224,7 +224,7 @@
       margin-bottom: 0.3rem;
     }
     .exp-when { font-size: 0.8rem; color: var(--fg-muted); font-weight: 300; }
-    .exp-where { font-size: 0.75rem; color: var(--fg-muted); font-weight: 300; opacity: 0.65; margin-top: 0.1rem; }
+    .exp-where { font-size: 0.75rem; color: var(--fg-muted); font-weight: 300; margin-top: 0.1rem; }
     .exp-title {
       font-family: var(--font-display);
       font-size: 1.25rem;
@@ -315,78 +315,33 @@
     .proj-btn svg { width: 13px; height: 13px; fill: currentColor; }
 
     /* ─── APPS ─── */
-    .apps-card {
-      border: 1px solid var(--bg-line);
-      border-radius: 3px;
-      background: var(--bg-card);
+    .apps-list {
       display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 0;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-    .apps-card:hover { border-color: rgba(0,196,204,0.28); }
-    .apps-circle-side {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 2rem;
-      border-right: 1px solid var(--bg-line);
-    }
-    .apps-circle-wrap {
-      position: relative;
-      width: 220px;
-      height: 220px;
-    }
-    .apps-circle-wrap::before {
-      content: '';
-      position: absolute;
-      inset: 20px;
-      border-radius: 50%;
-      border: 1px solid rgba(0,196,204,0.12);
-    }
-    .app-icon-pin {
-      position: absolute;
-      width: 52px;
-      height: 52px;
-    }
-    .app-icon-pin img {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 1px solid rgba(0,196,204,0.2);
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .app-icon-pin img:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 14px rgba(0,196,204,0.35);
-    }
-    /* pentagon positions: r=84px from center of 220px box (center=110px), 5 points at 72deg steps starting top */
-    .app-icon-pin:nth-child(1) { top: calc(110px - 26px - 84px);       left: calc(110px - 26px); }
-    .app-icon-pin:nth-child(2) { top: calc(110px - 26px - 25.9px);     left: calc(110px - 26px + 79.9px); }
-    .app-icon-pin:nth-child(3) { top: calc(110px - 26px + 67.9px);     left: calc(110px - 26px + 49.4px); }
-    .app-icon-pin:nth-child(4) { top: calc(110px - 26px + 67.9px);     left: calc(110px - 26px - 49.4px); }
-    .app-icon-pin:nth-child(5) { top: calc(110px - 26px - 25.9px);     left: calc(110px - 26px - 79.9px); }
-    .apps-list-side {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      border: 1px solid var(--bg-line);
+      background: var(--bg-line);
     }
     .app-row {
+      background: var(--bg);
       display: flex;
-      flex-direction: column;
-      padding: 1.1rem 2rem;
-      border-bottom: 1px solid var(--bg-line);
+      align-items: flex-start;
+      gap: 1.1rem;
+      padding: 1.6rem;
     }
-    .app-row:last-child { border-bottom: none; }
+    /* an odd last row spans the grid, so no empty cell shows */
+    .app-row:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .app-icon {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+    }
     .app-row-top {
       display: flex;
+      flex-wrap: wrap;
       align-items: baseline;
-      gap: 0.75rem;
-      margin-bottom: 0.2rem;
+      gap: 0.1rem 0.75rem;
+      margin-bottom: 0.3rem;
     }
     .app-name {
       font-family: var(--font-display);
@@ -397,15 +352,14 @@
     }
     .app-platform {
       font-family: var(--font-display);
-      font-size: 0.58rem;
+      font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--accent);
-      opacity: 0.65;
     }
     .app-desc {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--fg-muted);
       line-height: 1.6;
       font-weight: 300;
@@ -413,12 +367,11 @@
     .app-desc a {
       color: var(--accent);
       text-decoration: none;
-      border-bottom: 1px solid rgba(0,196,204,0.4);
+      border-bottom: 1px solid var(--accent);
     }
-    .app-desc a:hover { border-color: var(--accent); color: var(--fg); }
+    .app-desc a:hover { border-color: var(--fg); color: var(--fg); }
     @media (max-width: 760px) {
-      .apps-card { grid-template-columns: 1fr; }
-      .apps-circle-side { border-right: none; border-bottom: 1px solid var(--bg-line); }
+      .apps-list { grid-template-columns: 1fr; }
     }
 
     /* ─── SKILLS ─── */
@@ -550,7 +503,7 @@
       text-transform: uppercase;
       color: var(--fg-muted);
     }
-    .foot-note { font-size: 0.75rem; color: var(--fg-muted); opacity: 0.45; }
+    .foot-note { font-size: 0.75rem; color: var(--fg-muted); }
 
     /* ─── ANIMATION ─── */
     @keyframes up {
@@ -572,7 +525,8 @@
       footer { flex-direction: column; gap: 0.4rem; text-align: center; }
     }
     @media (max-width: 460px) {
-      .apps-grid { grid-template-columns: repeat(2, 1fr); }
+      .app-row { padding: 1.25rem; gap: 0.9rem; }
+      .app-icon { width: 52px; height: 52px; }
     }
   </style>
 </head>
@@ -602,7 +556,8 @@
     <p class="hero-body">
       Principal Software Engineer building and owning <strong>large-scale Java platforms</strong>,
       and shipping <strong>hands-on AI and LLM integrations</strong>. 10+ years across enterprise
-      architecture and an active iOS side project on the Anthropic Claude API and MCP.
+      architecture, plus native Apple apps built on my own time, including an iOS nutrition
+      tracker on the Anthropic Claude API.
     </p>
     <div class="hero-chips">
       <span class="chip">Java · Spring Boot</span>
@@ -647,7 +602,7 @@
     <div class="building-list" data-building-list>
       <div class="building-row">
         <div class="building-name">MacroScape (iOS)</div>
-        <p class="building-desc">Adding new alert rules and tightening the per-call AI observability inspector. Working toward App Store launch once the proxy is in place.</p>
+        <p class="building-desc">The nutrition tracker I use every day. I've been refreshing its design and working through a performance audit.</p>
       </div>
       <div class="building-row">
         <div class="building-name">M.S. in AI and Machine Learning</div>
@@ -767,13 +722,15 @@
         for multimodal food-photo analysis, OCR-then-LLM nutrition-label parsing, and refinement passes.
         Multi-model orchestration across Haiku, Sonnet, and Opus. USDA-grounded evaluation pipeline
         that falls through to verified data when model output is implausible. Prompt caching with
-        ephemeral cache_control blocks, per-call AI observability, and Keychain-based credential handling.</p>
+        ephemeral cache_control blocks, per-call AI observability, and direct API calls with the
+        user's own key held in the Keychain. Runs on iPhone and Apple Watch, with widgets on both.</p>
         <div class="stack">
           <span class="stag">Swift</span>
           <span class="stag">SwiftUI</span>
           <span class="stag">SwiftData</span>
           <span class="stag">Anthropic Claude API</span>
-          <span class="stag">MCP</span>
+          <span class="stag">watchOS</span>
+          <span class="stag">WidgetKit</span>
           <span class="stag">Apple HealthKit</span>
           <span class="stag">USDA Food Data Central</span>
           <span class="stag">Apple Vision OCR</span>
@@ -829,55 +786,60 @@
   <!-- APPS -->
   <div id="apps" class="section-block">
     <div class="label">Apps</div>
-    <div class="apps-card">
+    <div class="apps-list">
 
-      <!-- circle of icons -->
-      <div class="apps-circle-side">
-        <div class="apps-circle-wrap">
-          <div class="app-icon-pin"><img src="icons/nudge.png" alt="Nudge" /></div>
-          <div class="app-icon-pin"><img src="icons/budge.png" alt="Budge" /></div>
-          <div class="app-icon-pin"><img src="icons/macroscape.png" alt="MacroScape" /></div>
-          <div class="app-icon-pin"><img src="icons/bolt.png" alt="Bolt" /></div>
-          <div class="app-icon-pin"><img src="icons/sift.png" alt="Sift Filter" /></div>
-        </div>
-      </div>
-
-      <!-- list of apps -->
-      <div class="apps-list-side">
-        <div class="app-row">
+      <div class="app-row">
+        <img class="app-icon" src="icons/nudge.webp" alt="" width="60" height="60" loading="lazy" />
+        <div>
           <div class="app-row-top">
             <span class="app-name">Nudge</span>
             <span class="app-platform">iOS · macOS · watchOS</span>
           </div>
-          <div class="app-desc">Reminder and notification app with category-based scheduling, privacy controls, and snooze options.</div>
+          <div class="app-desc">Reminders, recurring tasks, habits with streaks and weekly goals, and countdown timers, synced with iCloud.</div>
         </div>
-        <div class="app-row">
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/budge.webp" alt="" width="60" height="60" loading="lazy" />
+        <div>
           <div class="app-row-top">
             <span class="app-name">Budge</span>
             <span class="app-platform">iOS · watchOS</span>
           </div>
-          <div class="app-desc">Strength training tracker with per-set weight logging, live heart rate via Apple Watch, and HealthKit integration.</div>
+          <div class="app-desc">Strength and cardio tracker for iPhone and Apple Watch that saves workouts to Apple Health. Also logs pull-ups through the day and walking-pad walks.</div>
         </div>
-        <div class="app-row">
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/macroscape.webp" alt="" width="60" height="60" loading="lazy" />
+        <div>
           <div class="app-row-top">
             <span class="app-name">MacroScape</span>
-            <span class="app-platform">iOS</span>
+            <span class="app-platform">iOS · watchOS</span>
           </div>
-          <div class="app-desc">AI-powered nutrition tracker using Claude vision to identify foods from photos. Tracks macros, micros, and health safety alerts.</div>
+          <div class="app-desc">Nutrition tracker that logs meals from a photo using Claude vision, a barcode, or a nutrition label. Tracks macros, water, caffeine and medications, with health safety alerts.</div>
         </div>
-        <div class="app-row">
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/bolt.webp" alt="" width="60" height="60" loading="lazy" />
+        <div>
           <div class="app-row-top">
             <span class="app-name">Bolt</span>
             <span class="app-platform">iOS</span>
           </div>
-          <div class="app-desc">Blocks the apps and websites you choose using Apple's Screen Time, with timed unlocks when you need them. <a href="/bolt/support/">Support</a> · <a href="/bolt/privacy/">Privacy</a></div>
+          <div class="app-desc">Blocks the apps and websites you choose using Apple's Screen Time, with timed unlocks that relock on their own. <a href="/bolt/support/">Support</a> · <a href="/bolt/privacy/">Privacy</a></div>
         </div>
-        <div class="app-row">
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/sift.webp" alt="" width="60" height="60" loading="lazy" />
+        <div>
           <div class="app-row-top">
             <span class="app-name">Sift Filter</span>
             <span class="app-platform">iOS</span>
           </div>
-          <div class="app-desc">On-device SMS filtering with your own block and allow rules. Quietly routes spam without sending anything to a server. <a href="/sift/support/">Support</a> · <a href="/sift/privacy/">Privacy</a></div>
+          <div class="app-desc">On-device SMS filtering with your own block and allow rules. Sorts texts into Junk, Promotions or Transactions without sending anything to a server. <a href="/sift/support/">Support</a> · <a href="/sift/privacy/">Privacy</a></div>
         </div>
       </div>
 
