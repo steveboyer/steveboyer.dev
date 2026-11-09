@@ -55,7 +55,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.25rem var(--gutter);
-      background: rgba(10,13,15,0.82);
+      background: rgba(10,13,15,0.94);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--bg-line);
     }
@@ -276,6 +276,7 @@
       margin-bottom: 0.85rem;
     }
     .proj-desc {
+      text-wrap: pretty;
       font-size: 0.93rem;
       color: var(--fg-muted);
       line-height: 1.8;
@@ -331,6 +332,7 @@
     }
     /* an odd last row spans the grid, so no empty cell shows */
     .app-row:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .app-row:last-child:nth-child(odd) .app-desc { max-width: 34.5rem; }
     .app-icon {
       width: 60px;
       height: 60px;
@@ -359,6 +361,7 @@
       color: var(--accent);
     }
     .app-desc {
+      text-wrap: pretty;
       font-size: 0.85rem;
       color: var(--fg-muted);
       line-height: 1.6;
@@ -525,8 +528,18 @@
       footer { flex-direction: column; gap: 0.4rem; text-align: center; }
     }
     @media (max-width: 460px) {
-      .app-row { padding: 1.25rem; gap: 0.9rem; }
-      .app-icon { width: 52px; height: 52px; }
+      /* icon, name and platforms share the top line; the description takes the full width */
+      .app-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 0.75rem 0.9rem;
+        padding: 1.25rem;
+      }
+      .app-row > div { display: contents; }
+      .app-row-top { margin-bottom: 0; }
+      .app-desc { grid-column: 1 / -1; }
+      .app-icon { width: 44px; height: 44px; }
     }
   </style>
 </head>
@@ -556,8 +569,8 @@
     <p class="hero-body">
       Principal Software Engineer building and owning <strong>large-scale Java platforms</strong>,
       and shipping <strong>hands-on AI and LLM integrations</strong>. 10+ years across enterprise
-      architecture, plus native Apple apps built on my own time, including an iOS nutrition
-      tracker on the Anthropic Claude API.
+      architecture, plus native Apple apps on my own time, including a nutrition tracker on
+      the Anthropic Claude API.
     </p>
     <div class="hero-chips">
       <span class="chip">Java · Spring Boot</span>
@@ -789,7 +802,7 @@
     <div class="apps-list">
 
       <div class="app-row">
-        <img class="app-icon" src="icons/nudge.webp" alt="" width="60" height="60" loading="lazy" />
+        <img class="app-icon" src="icons/nudge.webp" alt="" width="60" height="60" />
         <div>
           <div class="app-row-top">
             <span class="app-name">Nudge</span>
@@ -800,7 +813,7 @@
       </div>
 
       <div class="app-row">
-        <img class="app-icon" src="icons/budge.webp" alt="" width="60" height="60" loading="lazy" />
+        <img class="app-icon" src="icons/budge.webp" alt="" width="60" height="60" />
         <div>
           <div class="app-row-top">
             <span class="app-name">Budge</span>
@@ -811,18 +824,18 @@
       </div>
 
       <div class="app-row">
-        <img class="app-icon" src="icons/macroscape.webp" alt="" width="60" height="60" loading="lazy" />
+        <img class="app-icon" src="icons/macroscape.webp" alt="" width="60" height="60" />
         <div>
           <div class="app-row-top">
             <span class="app-name">MacroScape</span>
             <span class="app-platform">iOS · watchOS</span>
           </div>
-          <div class="app-desc">Nutrition tracker that logs meals from a photo using Claude vision, a barcode, or a nutrition label. Tracks macros, water, caffeine and medications, with health safety alerts.</div>
+          <div class="app-desc">Logs meals from a photo using Claude vision, a barcode, or a nutrition label. Tracks macros, water, caffeine and medications, with health safety alerts.</div>
         </div>
       </div>
 
       <div class="app-row">
-        <img class="app-icon" src="icons/bolt.webp" alt="" width="60" height="60" loading="lazy" />
+        <img class="app-icon" src="icons/bolt.webp" alt="" width="60" height="60" />
         <div>
           <div class="app-row-top">
             <span class="app-name">Bolt</span>
@@ -833,13 +846,79 @@
       </div>
 
       <div class="app-row">
-        <img class="app-icon" src="icons/sift.webp" alt="" width="60" height="60" loading="lazy" />
+        <img class="app-icon" src="icons/sift.webp" alt="" width="60" height="60" />
         <div>
           <div class="app-row-top">
             <span class="app-name">Sift Filter</span>
             <span class="app-platform">iOS</span>
           </div>
           <div class="app-desc">On-device SMS filtering with your own block and allow rules. Sorts texts into Junk, Promotions or Transactions without sending anything to a server. <a href="/sift/support/">Support</a> · <a href="/sift/privacy/">Privacy</a></div>
+        </div>
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/stock.webp" alt="" width="60" height="60" />
+        <div>
+          <div class="app-row-top">
+            <span class="app-name">Stock</span>
+            <span class="app-platform">iOS · macOS · watchOS</span>
+          </div>
+          <div class="app-desc">Shopping list whose items stay in a catalog and flip between needed and have, organized by store, with receipts and price history synced with iCloud.</div>
+        </div>
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/skim.webp" alt="" width="60" height="60" />
+        <div>
+          <div class="app-row-top">
+            <span class="app-name">Skim</span>
+            <span class="app-platform">iOS · macOS</span>
+          </div>
+          <div class="app-desc">One filtered list of headlines from major news outlets. Stories open in the publisher's own app or site.</div>
+        </div>
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/tinge.webp" alt="" width="60" height="60" />
+        <div>
+          <div class="app-row-top">
+            <span class="app-name">Tinge</span>
+            <span class="app-platform">iOS</span>
+          </div>
+          <div class="app-desc">Names the color at a reticle in the live camera or at any point in a photo, for people who are colorblind. Color names from Chirag Mehta's Name That Color.</div>
+        </div>
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/wake.webp" alt="" width="60" height="60" />
+        <div>
+          <div class="app-row-top">
+            <span class="app-name">Wake</span>
+            <span class="app-platform">iOS · watchOS</span>
+          </div>
+          <div class="app-desc">Alarm clock with grouped alarms and backups that stop only when you scan a saved NFC tag, plus timers and a work clock with daily history.</div>
+        </div>
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/catroscape.webp" alt="" width="60" height="60" />
+        <div>
+          <div class="app-row-top">
+            <span class="app-name">Catroscape</span>
+            <span class="app-platform">iOS</span>
+          </div>
+          <div class="app-desc">Tracks what your cats eat and weigh, with a photo per feeding, a shared food list, grams served and left, and trend charts.</div>
+        </div>
+      </div>
+
+      <div class="app-row">
+        <img class="app-icon" src="icons/tapedelay.webp" alt="" width="60" height="60" />
+        <div>
+          <div class="app-row-top">
+            <span class="app-name">tapedelay</span>
+            <span class="app-platform">iOS · watchOS</span>
+          </div>
+          <div class="app-desc">Your teams' scores, alerts and Live Activities, held back by a per-game delay to match the broadcast you're watching.</div>
         </div>
       </div>
 
